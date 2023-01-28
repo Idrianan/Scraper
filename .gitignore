@@ -134,3 +134,4 @@ Lib/
 share/
 Scripts/
 pyvenv.cfg
+test.py

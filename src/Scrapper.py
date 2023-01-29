@@ -3,15 +3,15 @@ import time
 class Scrapper:
     def __init__(self):
         pass
-
+    
     def define(self,region:str) ->str:
-        regions = ["Санкт-Петербург", "Москва"]
-        if not(region in regions):
+        try:
+            return {
+                'Санкт-Петербург': 'spb',
+                'Москва': 'msk'
+            }[region]
+        except KeyError:
             raise ValueError
-        elif region == "Санкт-Петербург":
-            return 'spb'
-        elif region == "Москва":
-            return 'msk'
 
     def set_URI(self,town:str) -> None:
         town = self.define(town)

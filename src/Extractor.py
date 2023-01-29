@@ -6,7 +6,7 @@ class Extractor:
     def __init__(self):
         pass
 
-    def extract_date(self,data):
+    def extract_num(self, data:str) -> int:
         data = data.replace(" ","")
         start = data.find('(')
         end = data.find(")")
@@ -46,20 +46,11 @@ class Extractor:
                     temp_2 = []
                     for ind in temp:
                         temp_2.append(ind.text)
-                    data = [temp_2[0],self.extract_date(temp_2[1]), self.extract_date(temp_2[2]), self.extract_date(temp_2[3]),i]
+                    data = [temp_2[0],self.extract_num(temp_2[1]), self.extract_num(temp_2[2]), self.extract_num(temp_2[3]),limit-i]
 
                 frame.append(data)
                 i+=1
 
             counter+=1
             if counter>limit:
-                break
-        frame = self.normilize_frame(frame)
-        return pd.DataFrame(frame[1:],columns=frame[0])
-
-    def normilize_frame(self,frame:list) -> list:
-        tmp_frame = []
-        tmp_frame.append(frame[0])
-        for i in range(len(frame)-1):
-            tmp_frame.append(frame[-i-1])
-        return tmp_frame
+                return pd.DataFrame(frame[1:],columns=frame[0])
